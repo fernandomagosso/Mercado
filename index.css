@@ -1,0 +1,221 @@
+:root {
+  --background-color: #121828;
+  --primary-text-color: #e0e0e0;
+  --secondary-text-color: #a0a0a0;
+  --card-background-color: #1c2333;
+  --input-background-color: #2a3447;
+  --button-background-color: #3b82f6;
+  --button-hover-color: #2563eb;
+  --positive-color: #10b981;
+  --negative-color: #ef4444;
+  --neutral-color: #6b7280;
+  --border-color: #4b5563;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+#root {
+  width: 100%;
+  max-width: 800px; /* Increased max-width for chart */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.125rem;
+  color: var(--secondary-text-color);
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.input-group input {
+  flex-grow: 1;
+  background-color: var(--input-background-color);
+  border: 1px solid var(--border-color);
+  color: var(--primary-text-color);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--button-background-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.input-group button {
+  background-color: var(--button-background-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.input-group button:hover:not(:disabled) {
+  background-color: var(--button-hover-color);
+}
+
+.input-group button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loader {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-left-color: var(--button-background-color);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--negative-color);
+  border: 1px solid var(--negative-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: left;
+}
+
+.result-card {
+  background-color: var(--card-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: left;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.result-card h2 span {
+  font-weight: 700;
+  color: var(--button-background-color);
+}
+
+.sentiment-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sentiment-display .icon {
+  font-size: 3rem;
+}
+
+.sentiment-display .text {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.sentiment-display .text.positive {
+  color: var(--positive-color);
+}
+.sentiment-display .text.negative {
+  color: var(--negative-color);
+}
+.sentiment-display .text.neutral {
+  color: var(--neutral-color);
+}
+
+.summary {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--secondary-text-color);
+}
+
+.chart-container {
+  margin-top: 1rem;
+  background-color: var(--card-background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  animation: fadeIn 0.5s ease-in-out 0.2s;
+  animation-fill-mode: backwards;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.last-updated {
+  font-size: 0.875rem;
+  color: var(--secondary-text-color);
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+}
