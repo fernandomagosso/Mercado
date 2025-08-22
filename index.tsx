@@ -57,9 +57,12 @@ const RenkoChart = ({ data, lastUpdated }: { data: OHLCV[], lastUpdated: Date | 
     });
     chartRef.current = chart;
 
-    const renkoSeries = chart.addBarSeries({
+    const renkoSeries = chart.addCandlestickSeries({
       upColor: '#10b981',
       downColor: '#ef4444',
+      borderVisible: false,
+      wickUpColor: '#10b981',
+      wickDownColor: '#ef4444',
     });
 
 
@@ -130,7 +133,7 @@ const RenkoChart = ({ data, lastUpdated }: { data: OHLCV[], lastUpdated: Date | 
   return (
     <div className="chart-container">
         <div className="chart-header">
-            <h3 className="chart-title">Gráfico Renko (Dados Reais)</h3>
+            <h3 className="chart-title">Gráfico Renko (Últimos 7 Dias)</h3>
             {lastUpdated && <p className="last-updated">Última Atualização: {lastUpdated.toLocaleTimeString()}</p>}
         </div>
         <div ref={chartContainerRef} className="chart-wrapper" />
@@ -152,7 +155,7 @@ const App = () => {
   const fetchChartData = useCallback(async (coinId: string) => {
     if (!coinId) return;
     try {
-        const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/ohlc?vs_currency=usd&days=90`);
+        const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/ohlc?vs_currency=usd&days=7`);
         if (!response.ok) {
             throw new Error(`Dados de mercado não encontrados para ${coinId}`);
         }
